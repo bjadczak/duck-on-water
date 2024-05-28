@@ -30,12 +30,10 @@ struct AppContext {
     std::unique_ptr<Skybox> skybox;
     std::unique_ptr<Trail> trail;
     std::unique_ptr<Point> light;
-    std::unique_ptr<Point> light2;
     std::unique_ptr<Flame> flame;
     std::unique_ptr<SparksEntity> sparks;
 
     PointLight pointLight;
-    PointLight pointLight2;
     std::unique_ptr<BaseCamera> camera;
 
     std::unique_ptr<FrameBufferManager> frameBufferManager;
@@ -71,30 +69,17 @@ struct AppContext {
         }
     }
 
-    AppContext() : // TODO Remove fixed screen resolution
+    AppContext() :
         frameBufferManager()
         {
             allocateCamera(CameraType::GAMELIKE);
             frameBufferManager = std::make_unique<FrameBufferManager>();
             frameBufferManager->create_buffers(camera->screenWidth, camera->screenHeight);
 
-            auto standModel = Importer::loadModel("../res/models/mesh1.txt");
-            std::vector<Model<PosNorTexVertex>> armModels;
-            armModels.reserve(5);
-            for(int i = 0; i < 5; i++)
-                armModels.push_back(Importer::loadModel("../res/models/mesh" + std::to_string(i+2) + ".txt"));
-            robot = std::make_unique<Robot>(standModel, armModels);
             room = std::make_unique<Room>();
-            cylinder = std::make_unique<Cylinder>();
-            mirror = std::make_unique<Mirror>();
             skybox = std::make_unique<Skybox>();
-            trail = std::make_unique<Trail>(*robot);
             light = std::make_unique<Point>();
-            light2 = std::make_unique<Point>();
-            flame = std::make_unique<Flame>();
-            sparks = std::make_unique<SparksEntity>(*robot);
-            pointLight2.position = glm::vec3(0,3.5,0);
-            pointLight2.strength = 0;
+            pointLight.position = glm::vec3(0,3.5,0);
         }
 };
 

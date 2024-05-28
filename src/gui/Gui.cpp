@@ -75,53 +75,10 @@ void Gui::showSceneWindow() {
 
     ImGui::Begin("Scene Window");
 
-    // Robot
-
-    bool fieldModified = false;
-    // User input for free angles.
-    ImGui::SeparatorText("Arm angles");
-    for(int i = 0; i < appContext.robot->kinematics.armRotationAngles.size(); i++) {
-        auto &angle = appContext.robot->kinematics.armRotationAngles[i];
-        fieldModified |= ImGui::SliderAngle(std::string(std::to_string(i) + ". arm").c_str(), &angle, 0.01f);
-    }
-    if(fieldModified) appContext.robot->kinematics.movementState = RobotKinematics::FreeAngles; // Change focus to free angles.
-    fieldModified = false;
-
-    // User input for needle position for inverse kinematics.
-    fieldModified |= ImGui::DragFloat3("Needle position", glm::value_ptr(appContext.robot->kinematics.needlePosition), 0.002f);
-    fieldModified |= ImGui::DragFloat3("Needle orientation", glm::value_ptr(appContext.robot->kinematics.needleOrientation), 0.002f);
-    if(fieldModified) {
-        appContext.robot->kinematics.needleOrientation = glm::normalize(appContext.robot->kinematics.needleOrientation);
-        appContext.robot->kinematics.movementState = RobotKinematics::FreeInverseKinematics;
-    }
-    fieldModified = false;
-
-    const char* items[] = { "Pi", "Infinity", "Chaotic", "Circle"};
-    int &i = reinterpret_cast<int &>(appContext.robot->kinematics.animation);
-    fieldModified |= ImGui::Combo("##combo", &i, items, IM_ARRAYSIZE(items));
-    if(fieldModified)
-        appContext.trail->reset();
-
-    bool animated = appContext.robot->kinematics.movementState == RobotKinematics::AnimatedInverseKinematics;
-    fieldModified |= ImGui::Checkbox("Animation", &animated);
-    if(fieldModified) {
-        appContext.robot->kinematics.movementState = animated ? RobotKinematics::AnimatedInverseKinematics
-                                                              : RobotKinematics::FreeAngles;
-        appContext.trail->reset();
-    }
-
-    ImGui::SameLine();
-    ImGui::Checkbox("On Fire", &appContext.robot->onFire);
-    ImGui::PushStyleColor(ImGuiCol_Text, IM_COL32(255,100,0,200));
-    ImGui::SameLine();
-    ImGui::Text("(DANGEROUS)");
-    ImGui::PopStyleColor();
-    ImGui::SameLine();
     ImGui::Checkbox("Transp. wall", &appContext.room->isTransparent);
 
     // Point Light
     drawLightUI(appContext.pointLight, 1);
-    drawLightUI(appContext.pointLight2, 2);
 
 
     // Camera type

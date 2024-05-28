@@ -13,6 +13,7 @@
 class Scene {
 
     Shader whiteShader;
+    Shader phongShader;
     Shader pbrShader;
     Shader shadowShader;
     Shader skyboxShader;
