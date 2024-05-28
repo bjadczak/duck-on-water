@@ -58,4 +58,5 @@ void Scene::setupPhong(PointLight &pointLight) {
 
 void Scene::drawScene() {
     appContext.room->render(phongShader);
+    appContext.water->render(phongShader);
 }

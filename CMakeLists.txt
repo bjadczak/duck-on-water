@@ -93,6 +93,8 @@ set(APP_SRC
         src/mesh/SparkVertex.h
         src/debug/DebugUI.h
         src/debug/DebugUI.cpp
+        src/waterSurface/Water.cpp
+        src/waterSurface/Water.h
 )
 
 # Include directories

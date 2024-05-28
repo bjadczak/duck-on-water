@@ -20,18 +20,14 @@
 #include "../flame/Flame.h"
 #include "../camera/CameraGameLike.h"
 #include "../spark/SparksEntity.h"
+#include "../waterSurface/Water.h"
 
 
 struct AppContext {
-    std::unique_ptr<Robot> robot;
+    std::unique_ptr<Water> water;
     std::unique_ptr<Room> room;
-    std::unique_ptr<Mirror> mirror;
-    std::unique_ptr<Cylinder> cylinder;
     std::unique_ptr<Skybox> skybox;
-    std::unique_ptr<Trail> trail;
     std::unique_ptr<Point> light;
-    std::unique_ptr<Flame> flame;
-    std::unique_ptr<SparksEntity> sparks;
 
     PointLight pointLight;
     std::unique_ptr<BaseCamera> camera;
@@ -76,6 +72,7 @@ struct AppContext {
             frameBufferManager = std::make_unique<FrameBufferManager>();
             frameBufferManager->create_buffers(camera->screenWidth, camera->screenHeight);
 
+            water = std::make_unique<Water>();
             room = std::make_unique<Room>();
             skybox = std::make_unique<Skybox>();
             light = std::make_unique<Point>();
