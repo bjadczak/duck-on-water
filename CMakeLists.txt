@@ -71,6 +71,8 @@ set(APP_SRC
         src/camera/CameraGameLike.h
         src/debug/DebugUI.h
         src/debug/DebugUI.cpp
+        src/waterSurface/Water.cpp
+        src/waterSurface/Water.h
 )
 
 # Include directories

@@ -14,8 +14,11 @@
 #include "../skybox/Skybox.h"
 #include "../point/Point.h"
 #include "../camera/CameraGameLike.h"
+#include "../waterSurface/Water.h"
 
 struct AppContext {
+
+    std::unique_ptr<Water> water;
     std::unique_ptr<Room> room;
     std::unique_ptr<Skybox> skybox;
     std::unique_ptr<Point> light;
@@ -63,6 +66,7 @@ struct AppContext {
             frameBufferManager = std::make_unique<FrameBufferManager>();
             frameBufferManager->create_buffers(camera->screenWidth, camera->screenHeight);
 
+            water = std::make_unique<Water>();
             room = std::make_unique<Room>();
             skybox = std::make_unique<Skybox>();
             light = std::make_unique<Point>();

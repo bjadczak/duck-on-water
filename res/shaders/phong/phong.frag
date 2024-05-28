@@ -53,5 +53,8 @@ void main()
     result += calculateLight(pointLight, normNormal, fragPos, viewDir);
     result *= objectColor.rgb;
 
+    float gamma = 2.2f;
+    result =  pow(result, vec3(1.0/gamma));
+
     fragColor = vec4(result, objectColor.a);
 }
