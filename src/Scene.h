@@ -14,35 +14,16 @@ class Scene {
 
     Shader whiteShader;
     Shader phongShader;
-    Shader pbrShader;
-    Shader shadowShader;
     Shader skyboxShader;
-    Shader trailShader;
     Shader pointShader;
-    Shader flameShader;
-    Shader sparkShader;
 
     AppContext &appContext;
 
-    void drawMirrorScene(PointLight &pointLight);
-    void setupMirrorPhong(PointLight &pointLight);
-    void drawSceneNoMirror(bool drawCylinder = true);
-    void drawSceneOnlyMirrorFront();
-
-    void drawShadowVolume(PointLight &pointLight);
     void setupPhong(PointLight &pointLight);
     void drawScene();
-    void createShadowMask(PointLight &pointLight);
-    void setupShadowedPhong(PointLight &pointLight);
 
-    void drawFlames();
-    void drawFlamesNormal();
-    void drawFlamesMirrored();
     void drawSkybox();
-    void drawTrail();
     void drawPointLight(Point &point);
-    void drawSkyboxMirrored();
-    void drawSparks();
 
 public:
     explicit Scene(AppContext &appContext);

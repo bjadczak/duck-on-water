@@ -8,13 +8,8 @@
 Scene::Scene(AppContext &appContext) :
         whiteShader("../res/shaders/basic/position.vert", "../res/shaders/basic/white.frag"),
         phongShader("../res/shaders/phong/phong.vert", "../res/shaders/phong/phong.frag"),
-        pbrShader("../res/shaders/pbr/pbr.vert", "../res/shaders/pbr/pbr.frag"),
-        shadowShader("../res/shaders/shadow/shadow.vert", "../res/shaders/shadow/shadow.geom","../res/shaders/shadow/shadow.frag"),
         skyboxShader("../res/shaders/skybox/skybox.vert","../res/shaders/skybox/skybox.frag"),
-        trailShader("../res/shaders/trail/trail.vert","../res/shaders/trail/trail.geom", "../res/shaders/trail/trail.frag"),
         pointShader("../res/shaders/point/point.vert","../res/shaders/point/point.frag"),
-        flameShader("../res/shaders/flame/flame.vert", "../res/shaders/flame/flame.geom","../res/shaders/flame/flame.frag"),
-        sparkShader("../res/shaders/spark/spark.vert", "../res/shaders/spark/spark.geom","../res/shaders/spark/spark.frag"),
         appContext(appContext)
     {}
 
@@ -32,8 +27,6 @@ void Scene::render() {
     drawScene();
 
     drawPointLight(*appContext.light);
-
-
 
     appContext.frameBufferManager->unbind();
 }
