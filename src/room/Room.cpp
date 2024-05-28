@@ -62,9 +62,9 @@ void Room::generateRoom (float width, float height, float depth)
     };
     std::vector<PosNorTexVertex> floorVertices = {
             // Bottom face
-            {glm::vec3(-width / 2, -1, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0, 1)},
-            {glm::vec3(width / 2, -1, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1, 1)},
-            {glm::vec3(width / 2, -1, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(1, 0)},
+            {glm::vec3(-width / 2, -1, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(0, 1)},
+            {glm::vec3(width / 2, -1, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec2(1, 1)},
+            {glm::vec3(width / 2, -1, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(1, 0)},
             {glm::vec3(-width / 2, -1, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0, 0)},
     };
 

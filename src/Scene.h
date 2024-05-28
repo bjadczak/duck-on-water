@@ -11,6 +11,7 @@
 
 class Scene {
 
+    Shader waterShader;
     Shader whiteShader;
     Shader phongShader;
     Shader skyboxShader;
@@ -19,6 +20,7 @@ class Scene {
     AppContext &appContext;
 
     void setupPhong(PointLight &pointLight);
+    void setupWaterShader(PointLight &pointLight);
     void drawScene();
 
     void drawSkybox();
