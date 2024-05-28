@@ -28,8 +28,6 @@ void Scene::render() {
 
     drawPointLight(*appContext.light);
 
-
-
     appContext.frameBufferManager->unbind();
 }
 

@@ -3,12 +3,16 @@ out vec4 fragColor;
 
 in vec3 normal;
 in vec3 fragPos;
+in vec2 texCoords;
 
 uniform vec3 viewPos;
 
 struct Material {
     float shininess;
     vec4 albedo;
+
+    bool hasTexture;
+    sampler2D texture;
 };
 uniform Material material;
 
@@ -41,7 +45,7 @@ vec3 calculateLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 
 void main()
 {
-    vec4 objectColor = material.albedo;
+    vec4 objectColor = material.hasTexture ? texture(material.texture, texCoords) : material.albedo;
     vec3 viewDir = normalize(viewPos - fragPos);
     vec3 normNormal = normalize(normal);
     vec3 result = vec3(0);
