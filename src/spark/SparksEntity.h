@@ -12,7 +12,7 @@
 
 class SparksEntity {
     Mesh<SparkVertex> mesh;
-    Texture texture{"../res/textures/drop.png"};
+    //Texture texture{"../res/textures/drop.png"};
     SparkGenerator sparkGenerator;
 
 public:

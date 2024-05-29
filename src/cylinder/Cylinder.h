@@ -11,7 +11,7 @@
 #include "../importer/Model.h"
 #include "../material/Material.h"
 #include "../mesh/PosNorTexVertex.h"
-#include "../texture/Texture.h"
+//#include "../texture/Texture.h"
 
 class Cylinder
 {
@@ -19,7 +19,7 @@ class Cylinder
     std::unique_ptr<Mesh<PosNorTexVertex>> meshVolume;
 
     Material material{{1,1,1,1},1,0};
-    Texture columnTexture;
+    //Texture columnTexture;
 
     static Model<PosNorTexVertex> generateCylinder(float radius, float height, int slices);
 

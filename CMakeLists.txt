@@ -95,6 +95,8 @@ set(APP_SRC
         src/debug/DebugUI.cpp
         src/waterSurface/Water.cpp
         src/waterSurface/Water.h
+        src/texture/Cubemap.cpp
+        src/texture/Cubemap.h
 )
 
 # Include directories

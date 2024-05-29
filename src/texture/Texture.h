@@ -12,8 +12,6 @@ class Texture {
     unsigned int id{};
 
 public:
-    explicit Texture(const std::string& path);
-    explicit Texture(float **data, unsigned int width, unsigned int height);
     explicit Texture(float ***data, unsigned int width, unsigned int height);
 
     void bind(int slot) const;

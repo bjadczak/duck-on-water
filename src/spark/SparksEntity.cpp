@@ -17,7 +17,7 @@ void SparksEntity::update(bool generate) {
 void SparksEntity::render(Shader &shader) {
     shader.setUniform("maxTTL", SparkGenerator::MAX_TTL);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-    texture.bind(0);
+    //texture.bind(0);
     mesh.render();
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }

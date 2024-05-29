@@ -5,8 +5,8 @@
 #include <random>
 #include "Cylinder.h"
 
-Cylinder::Cylinder () :
-        columnTexture("../res/textures/column.png")
+Cylinder::Cylinder () //:
+        //columnTexture("../res/textures/column.png")
 {
     auto cylinder = generateCylinder(0.5f, 2, 15);
     mesh = std::make_unique<Mesh<PosNorTexVertex>>(cylinder.vertices, cylinder.triagleIndices);
@@ -18,7 +18,7 @@ Cylinder::Cylinder () :
 void Cylinder::render (Shader &shader) {
     shader.setUniform("material.hasTexture", true);
     shader.setUniform("texture", 0);
-    columnTexture.bind(0);
+    //columnTexture.bind(0);
     shader.setUniform("model", getModel());
     material.setupMaterial(shader);
     mesh->render();

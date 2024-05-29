@@ -8,7 +8,7 @@
 Scene::Scene(AppContext &appContext) :
         waterShader("../res/shaders/water/water.vert", "../res/shaders/water/water.frag"),
         whiteShader("../res/shaders/basic/position.vert", "../res/shaders/basic/white.frag"),
-        phongShader("../res/shaders/phong/phong.vert", "../res/shaders/phong/phong.frag"),
+        phongShader("../res/shaders/phong/phongCubeMap.vert", "../res/shaders/phong/phongCubeMap.frag"),
         skyboxShader("../res/shaders/skybox/skybox.vert","../res/shaders/skybox/skybox.frag"),
         pointShader("../res/shaders/point/point.vert","../res/shaders/point/point.frag"),
         appContext(appContext)
