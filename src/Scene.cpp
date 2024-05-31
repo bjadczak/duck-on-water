@@ -8,7 +8,8 @@
 Scene::Scene(AppContext &appContext) :
         waterShader("../res/shaders/water/water.vert", "../res/shaders/water/water.frag"),
         whiteShader("../res/shaders/basic/position.vert", "../res/shaders/basic/white.frag"),
-        phongShader("../res/shaders/phong/phongCubeMap.vert", "../res/shaders/phong/phongCubeMap.frag"),
+        phongCubemapShader("../res/shaders/phong/phongCubeMap.vert", "../res/shaders/phong/phongCubeMap.frag"),
+        phongShader("../res/shaders/phong/phong.vert", "../res/shaders/phong/phong.frag"),
         skyboxShader("../res/shaders/skybox/skybox.vert","../res/shaders/skybox/skybox.frag"),
         pointShader("../res/shaders/point/point.vert","../res/shaders/point/point.frag"),
         appContext(appContext)
@@ -23,9 +24,13 @@ void Scene::render() {
     appContext.frameBufferManager->bind();
 
     drawSkybox();
-    setupPhong(appContext.pointLight);
+    setupPhongCubemap(appContext.pointLight);
 
     drawRoom();
+
+    setupPhong(appContext.pointLight);
+    drawDuck();
+
     drawWater();
 
 
@@ -50,6 +55,15 @@ void Scene::drawSkybox() {
 }
 
 
+void Scene::setupPhongCubemap(PointLight &pointLight) {
+    phongCubemapShader.use();
+    phongCubemapShader.setUniform("view", appContext.camera->getViewMatrix());
+    phongCubemapShader.setUniform("projection", appContext.camera->getProjectionMatrix());
+    phongCubemapShader.setUniform("viewPos", appContext.camera->getViewPosition());
+    phongCubemapShader.setUniform("isMirror", false);
+    pointLight.setupPointLight(phongCubemapShader);
+}
+
 void Scene::setupPhong(PointLight &pointLight) {
     phongShader.use();
     phongShader.setUniform("view", appContext.camera->getViewMatrix());
@@ -60,7 +74,7 @@ void Scene::setupPhong(PointLight &pointLight) {
 }
 
 void Scene::drawRoom() {
-    appContext.room->render(phongShader);
+    appContext.room->render(phongCubemapShader);
 }
 
 void Scene::setupWaterShader (PointLight &pointLight)
@@ -79,4 +93,9 @@ void Scene::drawWater ()
     appContext.room->cubemap->bind(1);
     waterShader.setUniform("cubemapTexture", 1);
     appContext.water->render(waterShader);
+}
+
+void Scene::drawDuck ()
+{
+    appContext.duck->render(phongShader);
 }

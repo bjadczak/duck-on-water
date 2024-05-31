@@ -32,8 +32,8 @@ set(IMGUI_SRC
 set(APP_SRC
         src/Scene.cpp
         src/Scene.h
-        src/robot/Robot.cpp
-        src/robot/Robot.h
+#        src/robot/Robot.cpp
+#        src/robot/Robot.h
         src/Shader.cpp
         src/Shader.h
         src/VariantUtil.h
@@ -54,25 +54,24 @@ set(APP_SRC
         src/importer/Importer.h
         src/importer/RawModel.h
         src/importer/Model.h
-        src/robot/RobotKinematics.cpp
-        src/robot/RobotKinematics.h
+#        src/robot/RobotKinematics.cpp
+#        src/robot/RobotKinematics.h
         src/room/Room.cpp
         src/room/Room.h
-        src/cylinder/Cylinder.cpp
-        src/cylinder/Cylinder.h
+#        src/cylinder/Cylinder.cpp
+#        src/cylinder/Cylinder.h
         src/light/PointLight.h
-        src/mirror/Mirror.cpp
-        src/mirror/Mirror.h
+#        src/mirror/Mirror.cpp
+#        src/mirror/Mirror.h
         src/skybox/Skybox.cpp
         src/skybox/Skybox.h
         src/mesh/PositionVertex.h
-        src/skybox/Skybox.cpp
-        src/trail/Trail.cpp
-        src/trail/Trail.h
+#        src/trail/Trail.cpp
+#        src/trail/Trail.h
         src/mesh/EmptyVertex.h
-        src/fourier/FourierShape.h
-        src/fourier/FourierShapeFactory.cpp
-        src/fourier/FourierShapeFactory.h
+#        src/fourier/FourierShape.h
+#        src/fourier/FourierShapeFactory.cpp
+#        src/fourier/FourierShapeFactory.h
         src/material/Material.h
         src/point/Point.h
         src/flame/Flame.cpp
@@ -85,18 +84,22 @@ set(APP_SRC
         src/camera/baseCamera.h
         src/camera/CameraGameLike.cpp
         src/camera/CameraGameLike.h
-        src/spark/SparkGenerator.cpp
-        src/spark/SparkGenerator.h
-        src/spark/Spark.h
-        src/spark/SparksEntity.cpp
-        src/spark/SparksEntity.h
-        src/mesh/SparkVertex.h
+#        src/spark/SparkGenerator.cpp
+#        src/spark/SparkGenerator.h
+#        src/spark/Spark.h
+#        src/spark/SparksEntity.cpp
+#        src/spark/SparksEntity.h
+#        src/mesh/SparkVertex.h
         src/debug/DebugUI.h
         src/debug/DebugUI.cpp
         src/waterSurface/Water.cpp
         src/waterSurface/Water.h
         src/texture/Cubemap.cpp
         src/texture/Cubemap.h
+        src/duck/Duck.cpp
+        src/duck/Duck.h
+        src/texture/common.h
+        src/texture/common.cpp
 )
 
 # Include directories

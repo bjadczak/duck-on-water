@@ -14,16 +14,19 @@ class Scene {
 
     Shader waterShader;
     Shader whiteShader;
+    Shader phongCubemapShader;
     Shader phongShader;
     Shader skyboxShader;
     Shader pointShader;
 
     AppContext &appContext;
 
+    void setupPhongCubemap(PointLight &pointLight);
     void setupPhong(PointLight &pointLight);
     void setupWaterShader(PointLight &pointLight);
     void drawRoom();
     void drawWater();
+    void drawDuck();
 
     void drawSkybox();
     void drawPointLight(Point &point);

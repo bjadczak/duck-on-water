@@ -21,6 +21,7 @@
 #include "../camera/CameraGameLike.h"
 #include "../spark/SparksEntity.h"
 #include "../waterSurface/Water.h"
+#include "../duck/Duck.h"
 
 
 struct AppContext {
@@ -28,6 +29,8 @@ struct AppContext {
     std::unique_ptr<Room> room;
     std::unique_ptr<Skybox> skybox;
     std::unique_ptr<Point> light;
+
+    std::unique_ptr<Duck> duck;
 
     PointLight pointLight;
     std::unique_ptr<BaseCamera> camera;
@@ -71,6 +74,10 @@ struct AppContext {
             allocateCamera(CameraType::GAMELIKE);
             frameBufferManager = std::make_unique<FrameBufferManager>();
             frameBufferManager->create_buffers(camera->screenWidth, camera->screenHeight);
+
+            auto duckModel = Importer::loadModel("../res/models/duck.txt");
+
+            duck = std::make_unique<Duck>(duckModel);
 
             water = std::make_unique<Water>();
             room = std::make_unique<Room>();

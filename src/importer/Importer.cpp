@@ -11,10 +11,11 @@ Model<PosNorTexVertex> Importer::loadModel(const std::string &path) {
     Model<PosNorTexVertex> model;
 
     auto rawModel = loadRawModel(path);
-
-    for(auto &normal : rawModel.normals) {
-        model.vertices.push_back({rawModel.uniqueVertices[normal.uniqueVertexId], normal.normal, glm::vec2()});
+    for(int i=0; i < rawModel.vertices.size(); i++)
+    {
+        model.vertices.push_back({rawModel.vertices[i], rawModel.normals[i], rawModel.texCords[i]});
     }
+
     model.triagleIndices.reserve(3 * rawModel.triangles.size());
     for(auto &triangle : rawModel.triangles) {
         model.triagleIndices.push_back(triangle[0]);
@@ -22,44 +23,7 @@ Model<PosNorTexVertex> Importer::loadModel(const std::string &path) {
         model.triagleIndices.push_back(triangle[2]);
     }
 
-    model.triagleAdjacencyIndices.reserve(6 * rawModel.triangles.size());
-    for(int i = 0; i < rawModel.triangles.size(); i++) {
-        auto &triangle = rawModel.triangles[i];
-        model.triagleAdjacencyIndices.push_back(triangle[0]);
-        model.triagleAdjacencyIndices.push_back(triangle[1]);
-        model.triagleAdjacencyIndices.push_back(triangle[2]);
-
-        std::vector<unsigned int> adjecentTriangles;
-        for(auto &edge : rawModel.edges) {
-            if(i == edge.triangleIds[0]) adjecentTriangles.push_back(edge.triangleIds[1]);
-            if(i == edge.triangleIds[1]) adjecentTriangles.push_back(edge.triangleIds[0]);
-        }
-        assert(adjecentTriangles.size() == 3);
-
-        model.triagleAdjacencyIndices.push_back(findAdj(triangle[0], triangle[1], adjecentTriangles, rawModel));
-        model.triagleAdjacencyIndices.push_back(findAdj(triangle[1], triangle[2], adjecentTriangles, rawModel));
-        model.triagleAdjacencyIndices.push_back(findAdj(triangle[0], triangle[2], adjecentTriangles, rawModel));
-    }
-
     return model;
-}
-
-unsigned int Importer::findAdj(unsigned int v1, unsigned int v2, std::vector<unsigned int> &adjacentTriangles, RawModel rawModel) {
-    v1 = rawModel.normals[v1].uniqueVertexId;
-    v2 = rawModel.normals[v2].uniqueVertexId;
-    for(auto &triangleId : adjacentTriangles) {
-        auto triangle = rawModel.triangles[triangleId];
-        triangle[0] = rawModel.normals[triangle[0]].uniqueVertexId;
-        triangle[1] = rawModel.normals[triangle[1]].uniqueVertexId;
-        triangle[2] = rawModel.normals[triangle[2]].uniqueVertexId;
-        if((v1 == triangle[0] && v2 == triangle[1]) || (v2 == triangle[0] && v1 == triangle[1]))
-            return triangle[2];
-        if((v1 == triangle[1] && v2 == triangle[2]) || (v2 == triangle[1] && v1 == triangle[2]))
-            return triangle[0];
-        if((v1 == triangle[0] && v2 == triangle[2]) || (v2 == triangle[0] && v1 == triangle[2]))
-            return triangle[1];
-    }
-    assert(false);
 }
 
 RawModel Importer::loadRawModel(const std::string &path) {
@@ -83,24 +47,19 @@ RawModel Importer::loadRawModel(const std::string &path) {
     int caret = 0;
 
     // Unique vertices section starts with their count.
-    int uniqueVerticesCount = std::stoi(tokens[caret++]);
-    // Load unique vertices
-    model.uniqueVertices.reserve(uniqueVerticesCount);
-    for(int i=0; i < uniqueVerticesCount; i++) {
-        glm::vec3 vertex(std::stof(tokens[caret+0]), std::stof(tokens[caret+1]), std::stof(tokens[caret+2]));
-        caret+=3;
-        model.uniqueVertices.push_back(vertex);
-    }
-
-    // Vertices section starts with their count.
     int verticesCount = std::stoi(tokens[caret++]);
-    // Load vertices with unique normals
+    // Load unique vertices
+    model.vertices.reserve(verticesCount);
     model.normals.reserve(verticesCount);
+    model.texCords.reserve(verticesCount);
     for(int i=0; i < verticesCount; i++) {
-        unsigned int id = std::stoi(tokens[caret++]);
-        glm::vec3 normal(std::stof(tokens[caret]), std::stof(tokens[caret+1]), std::stof(tokens[caret+2]));
-        caret+=3;
-        model.normals.push_back({id, normal});
+        glm::vec3 vertex(std::stof(tokens[caret+0]), std::stof(tokens[caret+1]), std::stof(tokens[caret+2]));
+        glm::vec3 normal(std::stof(tokens[caret+3]), std::stof(tokens[caret+4]), std::stof(tokens[caret+5]));
+        glm::vec2 tex(std::stof(tokens[caret+6]), std::stof(tokens[caret+7]));
+        caret+=8;
+        model.vertices.push_back(vertex);
+        model.normals.push_back(normal);
+        model.texCords.push_back(tex);
     }
 
     // Triangle section starts with their count.
@@ -116,21 +75,6 @@ RawModel Importer::loadRawModel(const std::string &path) {
         caret+=3;
     }
 
-    // Edge section starts with their count.
-    int edgeCount = std::stoi(tokens[caret++]);
-    // Load edge vertices and triangles
-    model.edges.reserve(edgeCount);
-    for(int i=0; i < edgeCount; i++) {
-        model.edges.push_back({{
-            static_cast<unsigned int>(std::stoi(tokens[caret+0])),
-            static_cast<unsigned int>(std::stoi(tokens[caret+1])),
-            }, {
-            static_cast<unsigned int>(std::stoi(tokens[caret+2])),
-            static_cast<unsigned int>(std::stoi(tokens[caret+3])),
-            }
-        });
-        caret+=4;
-    }
 
     file.close();
     return model;

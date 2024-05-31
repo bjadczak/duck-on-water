@@ -13,6 +13,7 @@ class Texture {
 
 public:
     explicit Texture(float *data, unsigned int width, unsigned int height);
+    explicit Texture(const std::string& path);
 
     void bind(int slot) const;
 

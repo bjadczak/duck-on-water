@@ -46,6 +46,7 @@ vec3 calculateLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) {
 void main()
 {
     vec4 objectColor = material.hasTexture ? texture(material.texture, texCoords) : material.albedo;
+    //vec4 objectColor = texture(material.texture, texCoords);
     vec3 viewDir = normalize(viewPos - fragPos);
     vec3 normNormal = normalize(normal);
     vec3 result = vec3(0);

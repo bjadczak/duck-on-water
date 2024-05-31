@@ -11,11 +11,6 @@ Robot::Robot(Model<PosNorTexVertex>& standModel, std::vector<Model<PosNorTexVert
         armMeshes.emplace_back(armModel.vertices, armModel.triagleIndices);
     }
 
-    standMeshVolume = std::make_unique<Mesh<PosNorTexVertex>>(standModel.vertices, standModel.triagleAdjacencyIndices, GL_TRIANGLES_ADJACENCY);
-    armMeshesVolume.reserve(armModels.size());
-    for(auto &armModel : armModels) {
-        armMeshesVolume.emplace_back(armModel.vertices, armModel.triagleAdjacencyIndices, GL_TRIANGLES_ADJACENCY);
-    }
 
     onFire = false;
 }
