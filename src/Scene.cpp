@@ -89,6 +89,7 @@ void Scene::setupWaterShader (PointLight &pointLight)
 
 void Scene::drawWater ()
 {
+    appContext.water->updateDuckPos(appContext.duck->getPos());
     setupWaterShader(appContext.pointLight);
     appContext.room->cubemap->bind(1);
     waterShader.setUniform("cubemapTexture", 1);

@@ -30,7 +30,7 @@ void Water::generateWaterPlane (float width, float height, float depth)
     waterMesh = std::make_unique<Mesh<PosNorTexVertex>>(waterVertices, waterIndices);
 }
 
-Water::Water ()
+Water:: Water()
 {
     generateWaterPlane(2, 0.2f, 2);
 
@@ -102,6 +102,7 @@ void Water::update ()
         int j = std::rand() % 256;
         tempTable[i * NORMAL_MAP_W + j] = 0.25f;
     }
+    tempTable[(int)((duckPos.z + 1)/ 2 * 256) * NORMAL_MAP_W + (int)((duckPos.x + 1) / 2 * 256)] = 0.25f;
     swapTables = !swapTables;
 
     sendDataToTexture(tempTable);
@@ -147,4 +148,9 @@ void Water::sendDataToTexture (float *data)
 
     waterHeightMap->updateTexture(data4Dim, NORMAL_MAP_H, NORMAL_MAP_W);
 
+}
+
+void Water::updateDuckPos (glm::vec3 duckPos)
+{
+    this->duckPos = duckPos;
 }

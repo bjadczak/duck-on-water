@@ -41,10 +41,13 @@ class Water
     float data4Dim[NORMAL_MAP_H * NORMAL_MAP_W * 4];
     bool swapTables = false;
 
+    glm::vec3 duckPos = glm::vec3(0, 0.2f, 0);
+
 public:
     Water();
     void render(Shader &shader);
     void update();
+    void updateDuckPos(glm::vec3 duckPos);
 };
 
 
