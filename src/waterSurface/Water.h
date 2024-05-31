@@ -15,6 +15,7 @@
 
 #define NORMAL_MAP_H 256
 #define NORMAL_MAP_W 256
+#define COLOR_MAP_COUNT 4
 
 class Water
 {
@@ -26,7 +27,7 @@ class Water
 
     void generateWaterPlane(float width, float height, float depth);
 
-    void sendDataToTexture(float** data);
+    void sendDataToTexture(float* data);
 
     float N = 256.0f;
     float h = 2 / (N - 1);
@@ -34,10 +35,10 @@ class Water
     float t = 1 / N;
     float A = (c * c * t * t) / (h * h);
     float B = 2 - 4 * A;
-    float** tempTable;
-    float** heightTable;
-    float** heightTable2;
-    float*** data4Dim;
+    float tempTable[NORMAL_MAP_H * NORMAL_MAP_W];
+    float heightTable[NORMAL_MAP_H * NORMAL_MAP_W];
+    float heightTable2[NORMAL_MAP_H * NORMAL_MAP_W];
+    float data4Dim[NORMAL_MAP_H * NORMAL_MAP_W * 4];
     bool swapTables = false;
 
 public:

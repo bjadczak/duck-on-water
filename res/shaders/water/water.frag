@@ -72,8 +72,7 @@ void main() {
     vec3 refracted = refract(-view_vector, normal, n1n2);
     float fresnel_value = fresnel(view_vector, normal);
 
-    //vec3 reflectCol = texture(cubemapTexture, intersectRay(localPos, reflected)).rgb;
-    //vec3 reflectCol = vec3(1,0,0);
+    vec3 reflectCol = texture(cubemapTexture, intersectRay(localPos, reflected)).rgb;
     vec3 refractCol = texture(cubemapTexture, intersectRay(localPos, refracted)).rgb;
 
     if (!all(isnan(refracted))) {
