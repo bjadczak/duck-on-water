@@ -75,8 +75,6 @@ void Gui::showSceneWindow() {
 
     ImGui::Begin("Scene Window");
 
-    ImGui::Checkbox("Transp. wall", &appContext.room->isTransparent);
-
     // Point Light
     drawLightUI(appContext.pointLight, 1);
 

@@ -32,7 +32,7 @@ void Water::generateWaterPlane (float width, float height, float depth)
 
 Water::Water ()
 {
-    generateWaterPlane(6, 2, 6);
+    generateWaterPlane(2, 0.2f, 2);
     tempTable = new float*[NORMAL_MAP_H];
     heightTable = new float*[NORMAL_MAP_H];
     heightTable2 = new float*[NORMAL_MAP_H];

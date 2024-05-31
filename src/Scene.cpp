@@ -25,10 +25,9 @@ void Scene::render() {
     drawSkybox();
     setupPhong(appContext.pointLight);
 
-    drawScene();
+    drawRoom();
+    drawWater();
 
-    setupWaterShader(appContext.pointLight);
-    appContext.water->render(waterShader);
 
     drawPointLight(*appContext.light);
 
@@ -60,7 +59,7 @@ void Scene::setupPhong(PointLight &pointLight) {
     pointLight.setupPointLight(phongShader);
 }
 
-void Scene::drawScene() {
+void Scene::drawRoom() {
     appContext.room->render(phongShader);
 }
 
@@ -72,4 +71,12 @@ void Scene::setupWaterShader (PointLight &pointLight)
     waterShader.setUniform("viewPos", appContext.camera->getViewPosition());
     waterShader.setUniform("isMirror", false);
     pointLight.setupPointLight(waterShader);
+}
+
+void Scene::drawWater ()
+{
+    setupWaterShader(appContext.pointLight);
+    appContext.room->cubemap->bind(1);
+    waterShader.setUniform("cubemapTexture", 1);
+    appContext.water->render(waterShader);
 }

@@ -6,7 +6,7 @@
 
 Room::Room ()
 {
-    generateRoom(6, 6, 6);
+    generateRoom(2, 2, 2);
     std::vector<std::string> faces
     {
         "../res/textures/right.jpg",    // Right
@@ -34,40 +34,40 @@ void Room::generateRoom (float width, float height, float depth)
 {
     std::vector<PosNorTexVertex> wallVertices = {
             // Front face
-            {glm::vec3(-width / 2, -1, depth / 2),          glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(1, 1)},
-            {glm::vec3(width / 2, -1, depth / 2),           glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(0, 1)},
-            {glm::vec3(width / 2, height - 1, depth / 2),   glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(0, 0)},
-            {glm::vec3(-width / 2, height - 1, depth / 2),  glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(1, 0)},
+            {glm::vec3(-width / 2, -height / 2, depth / 2),          glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(1, 1)},
+            {glm::vec3(width / 2,  -height / 2, depth / 2),           glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(0, 1)},
+            {glm::vec3(width / 2,   height / 2, depth / 2),   glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(0, 0)},
+            {glm::vec3(-width / 2,  height / 2, depth / 2),  glm::vec3(0.0f, 0.0f, -1.0f), glm::vec2(1, 0)},
 
             // Back face
-            {glm::vec3(-width / 2, -1, -depth / 2),         glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(0, 1)},
-            {glm::vec3(width / 2, -1, -depth / 2),          glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(1, 1)},
-            {glm::vec3(width / 2, height - 1, -depth / 2),  glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(1, 0)},
-            {glm::vec3(-width / 2, height - 1, -depth / 2), glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(0, 0)},
+            {glm::vec3(-width / 2, -height / 2, -depth / 2),         glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(0, 1)},
+            {glm::vec3(width / 2,  -height / 2, -depth / 2),          glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(1, 1)},
+            {glm::vec3(width / 2,   height / 2, -depth / 2),  glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(1, 0)},
+            {glm::vec3(-width / 2,  height / 2, -depth / 2), glm::vec3(0.0f, 0.0f, 1.0f),  glm::vec2(0, 0)},
 
             // Right face
-            {glm::vec3(width / 2, -1, depth / 2),           glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(1, 1)},
-            {glm::vec3(width / 2, -1, -depth / 2),          glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(0, 1)},
-            {glm::vec3(width / 2, height - 1, -depth / 2),  glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(0, 0)},
-            {glm::vec3(width / 2, height - 1, depth / 2),   glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(1, 0)},
+            {glm::vec3(width / 2, -height / 2, depth / 2),           glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(1, 1)},
+            {glm::vec3(width / 2, -height / 2, -depth / 2),          glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(0, 1)},
+            {glm::vec3(width / 2,  height / 2, -depth / 2),  glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(0, 0)},
+            {glm::vec3(width / 2,  height / 2, depth / 2),   glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec2(1, 0)},
 
             // Left face
-            {glm::vec3(-width / 2, -1, depth / 2),          glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(0, 1)},
-            {glm::vec3(-width / 2, -1, -depth / 2),         glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(1, 1)},
-            {glm::vec3(-width / 2, height - 1, -depth / 2), glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(1, 0)},
-            {glm::vec3(-width / 2, height - 1, depth / 2),  glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(0, 0)},
+            {glm::vec3(-width / 2, -height / 2, depth / 2),          glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(0, 1)},
+            {glm::vec3(-width / 2, -height / 2, -depth / 2),         glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(1, 1)},
+            {glm::vec3(-width / 2,  height / 2, -depth / 2), glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(1, 0)},
+            {glm::vec3(-width / 2,  height / 2, depth / 2),  glm::vec3(1.0f, 0.0f, 0.0f),  glm::vec2(0, 0)},
 
             // Top face
-            {glm::vec3(-width / 2, height - 1, depth / 2),  glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(0, 0)},
-            {glm::vec3(width / 2, height - 1, depth / 2),   glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(1, 0)},
-            {glm::vec3(width / 2, height - 1, -depth / 2),  glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(1, 1)},
-            {glm::vec3(-width / 2, height - 1, -depth / 2), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(0, 1)},
+            {glm::vec3(-width / 2, height / 2, depth / 2),  glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(0, 0)},
+            {glm::vec3(width / 2,  height / 2, depth / 2),   glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(1, 0)},
+            {glm::vec3(width / 2,  height / 2, -depth / 2),  glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(1, 1)},
+            {glm::vec3(-width / 2, height / 2, -depth / 2), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec2(0, 1)},
 
             // Bottom face
-            {glm::vec3(-width / 2, -1, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(0, 1)},
-            {glm::vec3(width / 2, -1, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec2(1, 1)},
-            {glm::vec3(width / 2, -1, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(1, 0)},
-            {glm::vec3(-width / 2, -1, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0, 0)},
+            {glm::vec3(-width / 2, -height / 2, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(0, 1)},
+            {glm::vec3(width / 2,  -height / 2, depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),   glm::vec2(1, 1)},
+            {glm::vec3(width / 2,  -height / 2, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f),  glm::vec2(1, 0)},
+            {glm::vec3(-width / 2, -height / 2, -depth / 2), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec2(0, 0)},
     };
 
     std::vector<unsigned int> wallIndices = {
