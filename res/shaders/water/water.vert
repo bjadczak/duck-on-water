@@ -6,6 +6,7 @@ layout (location = 2) in vec2 aTexCoords;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+uniform float waterLevel;
 
 out vec3 localPos;
 out vec3 worldPos;
@@ -16,9 +17,9 @@ void main()
 {
     norm = aNormal;
     localPos = aPos;
-    localPos.y = 0.0f;
+    localPos.y = waterLevel;
     vec4 worldPosition = model * vec4(localPos, 1.0);
     worldPos = worldPosition.xyz;
     texCoords = aTexCoords;
-    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    gl_Position = projection * view * model * vec4(localPos, 1.0);
 }

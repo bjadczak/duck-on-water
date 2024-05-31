@@ -48,6 +48,8 @@ public:
     void render(Shader &shader);
     void update();
     void updateDuckPos(glm::vec3 duckPos);
+
+    float waterLevel = 0.2f;
 };
 
 
