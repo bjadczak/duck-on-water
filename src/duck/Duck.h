@@ -41,6 +41,8 @@ public:
     void render(Shader &shader);
 
     glm::vec3 getPos() { return pos; }
+
+    void updatedWaterLevel(float newWaterLevel) {pos.y = newWaterLevel;}
 };
 
 

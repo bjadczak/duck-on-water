@@ -65,6 +65,7 @@ void Water::render (Shader &shader)
     shader.setUniform("material.texture", 0);
     material.setupMaterial(shader);
     shader.setUniform("model", glm::mat4(1));
+    shader.setUniform("waterLevel", waterLevel);
     waterHeightMap->bind(0);
     waterMesh->render();
     update();

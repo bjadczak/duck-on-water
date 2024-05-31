@@ -78,7 +78,12 @@ void Gui::showSceneWindow() {
     // Point Light
     drawLightUI(appContext.pointLight, 1);
 
-
+    // Water level
+    ImGui::SeparatorText("Water level");
+    if(ImGui::DragFloat(("Water level"), &(appContext.water->waterLevel), 0.05f, -0.99f, 0.99f))
+    {
+        appContext.duck->updatedWaterLevel(appContext.water->waterLevel);
+    }
     // Camera type
     ImGui::SeparatorText("Camera");
 
