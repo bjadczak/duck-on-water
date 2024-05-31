@@ -77,7 +77,7 @@ struct AppContext {
             room = std::make_unique<Room>();
             skybox = std::make_unique<Skybox>();
             light = std::make_unique<Point>();
-            pointLight.position = glm::vec3(0,3.5,0);
+            pointLight.position = glm::vec3(0,0.7f,0);
         }
 };
 
