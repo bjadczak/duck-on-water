@@ -12,11 +12,11 @@ class Texture {
     unsigned int id{};
 
 public:
-    explicit Texture(float ***data, unsigned int width, unsigned int height);
+    explicit Texture(float *data, unsigned int width, unsigned int height);
 
     void bind(int slot) const;
 
-    void updateTexture(float*** data, unsigned int width, unsigned int height);
+    void updateTexture(float* data, unsigned int width, unsigned int height);
 };
 
 

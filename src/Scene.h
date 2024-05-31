@@ -21,7 +21,8 @@ class Scene {
 
     void setupPhong(PointLight &pointLight);
     void setupWaterShader(PointLight &pointLight);
-    void drawScene();
+    void drawRoom();
+    void drawWater();
 
     void drawSkybox();
     void drawPointLight(Point &point);
