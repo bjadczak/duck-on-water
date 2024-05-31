@@ -95,17 +95,6 @@ int main(int, char**)
     while (!glfwWindowShouldClose(window))
 #endif
     {
-        glfwPollEvents();
-
-
-
-
-        // Rendering
-//        int display_w, display_h;
-//        glfwGetFramebufferSize(window, &display_w, &display_h);
-//        glViewport(0, 0, display_w, display_h);
-//        glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
-//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         scene.update();
         scene.render();
@@ -114,9 +103,9 @@ int main(int, char**)
         gui.newFrame();
         gui.render();
 
-        //ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 #ifdef __EMSCRIPTEN__
     EMSCRIPTEN_MAINLOOP_END;

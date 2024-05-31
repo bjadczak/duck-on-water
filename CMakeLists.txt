@@ -75,6 +75,10 @@ set(APP_SRC
         src/waterSurface/Water.h
         src/texture/Cubemap.cpp
         src/texture/Cubemap.h
+        src/duck/Duck.cpp
+        src/duck/Duck.h
+        src/texture/common.h
+        src/texture/common.cpp
 )
 
 # Include directories
