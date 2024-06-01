@@ -6,20 +6,14 @@
 #define PUMAROBOT_APPCONTEXT_H
 
 
-#include "../robot/Robot.h"
 #include "../room/Room.h"
-#include "../cylinder/Cylinder.h"
-#include "../mirror/Mirror.h"
 #include "../camera/CameraAnchorFree.h"
 #include "../framebufferManager/FrameBufferManager.h"
 #include "../importer/Importer.h"
 #include "../light/PointLight.h"
 #include "../skybox/Skybox.h"
-#include "../trail/Trail.h"
 #include "../point/Point.h"
-#include "../flame/Flame.h"
 #include "../camera/CameraGameLike.h"
-#include "../spark/SparksEntity.h"
 #include "../waterSurface/Water.h"
 #include "../duck/Duck.h"
 

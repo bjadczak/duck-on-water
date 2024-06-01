@@ -6,7 +6,6 @@
 #define PUMAROBOT_SCENE_H
 
 
-#include "robot/Robot.h"
 #include "camera/CameraAnchorFree.h"
 #include "app/AppContext.h"
 
