@@ -2,9 +2,17 @@
 
 This is an OpenGL application, that displays duck swimming in simulated water. Water surface has simulated water droplets and duck itself leaves a trail made of waves behind.
 
-# Base
+https://github.com/bjadczak/duck-on-water/assets/73365815/06dac51b-017a-403b-a1ff-658399176ff7
 
-Project is based on previous university work from https://github.com/mini-pw-gk-proj/puma-robot.
+Project *should* be compatible with macOS (intel), Windows and Linux.
+
+## Image source
+
+- Cubemap is from [learnopengl.com](https://learnopengl.com/Advanced-OpenGL/Cubemaps) under CC BY-NC 4.0
+
+## Base
+
+Project is based on previous university work [puma-robot](from https://github.com/mini-pw-gk-proj/puma-robot).
 
 # Dependencies
 
