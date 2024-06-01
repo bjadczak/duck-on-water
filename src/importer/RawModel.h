@@ -8,23 +8,14 @@
 #include <vector>
 #include <array>
 #include "glm/vec3.hpp"
+#include "glm/vec2.hpp"
 
 struct RawModel {
-    std::vector<glm::vec3> uniqueVertices; // Positions of uniqueVertices.
+    std::vector<glm::vec3> vertices;
+    std::vector<glm::vec3> normals;
+    std::vector<glm::vec2> texCords;
 
-    struct Normal {
-        unsigned int uniqueVertexId;
-        glm::vec3 normal;
-    };
-    std::vector<Normal> normals; // one or more normal vectors can belong to a single uniqueVertex.
-
-    std::vector<std::array<unsigned int, 3>> triangles; // Indices of vertices (not uniqueVertices!) that create a triangle.
-
-    struct Edge {
-        std::array<unsigned int, 2> uniqueVerticesIds; // Indices of uniqueVertices connected by the edge.
-        std::array<unsigned int, 2> triangleIds; // Indices of triangles these points belong to.
-    };
-    std::vector<Edge> edges;
+    std::vector<std::array<unsigned int, 3>> triangles;
 };
 
 #endif //PUMAROBOT_RAWMODEL_H

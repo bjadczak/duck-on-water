@@ -13,7 +13,6 @@ template<typename TVertex> requires is_vertex<TVertex>
 struct Model {
     std::vector<TVertex> vertices;
     std::vector<unsigned int> triagleIndices;
-    std::vector<unsigned int> triagleAdjacencyIndices;
 };
 
 #endif //PUMAROBOT_MODEL_H

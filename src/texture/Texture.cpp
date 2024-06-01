@@ -4,15 +4,14 @@
 
 #include "Texture.h"
 #include "../Shader.h"
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb/stb_image.h"
+#include "common.h"
 
 Texture::Texture(const std::string& path) {
     glGenTextures(1, &id);
     glBindTexture(GL_TEXTURE_2D, id);
 
     int width, height, nrChannels;
-    unsigned char *data = stbi_load(path.c_str(), &width, &height, &nrChannels, 0);
+    unsigned char *data = TextureCommon::loadImage(path.c_str(), &width, &height, &nrChannels, 0);
 
     glTexImage2D(
             GL_TEXTURE_2D,
@@ -26,7 +25,7 @@ Texture::Texture(const std::string& path) {
             data
     );
     glGenerateMipmap(id);
-    stbi_image_free(data);
+    TextureCommon::freeImage(data);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -36,3 +35,27 @@ void Texture::bind(int slot) const {
     glActiveTexture(GL_TEXTURE0 + slot);
     glBindTexture(GL_TEXTURE_2D, id);
 }
+
+Texture::Texture (float *data, unsigned int width, unsigned int height)
+{
+    glGenTextures(1, &id);
+    glBindTexture(GL_TEXTURE_2D, id);
+
+    // Upload the initial data to the GPU
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, width, height, 0, GL_RGBA, GL_FLOAT, data);
+
+    // Set texture parameters
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+}
+
+void Texture::updateTexture (float* data, unsigned int width, unsigned int height)
+{
+    // Update the texture
+    glBindTexture(GL_TEXTURE_2D, id);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RGBA, GL_FLOAT, data);
+}
+

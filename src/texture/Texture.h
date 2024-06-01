@@ -12,9 +12,12 @@ class Texture {
     unsigned int id{};
 
 public:
+    explicit Texture(float *data, unsigned int width, unsigned int height);
     explicit Texture(const std::string& path);
 
     void bind(int slot) const;
+
+    void updateTexture(float* data, unsigned int width, unsigned int height);
 };
 
 
