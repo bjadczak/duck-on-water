@@ -98,10 +98,10 @@ void Duck::updatePosAnDir()
     pos.x = calcPos.x;
     pos.z = calcPos.y;
 
-    glm::vec2 calcDir = deCasteljau3(t, p0, p1, p2);
+    glm::vec2 calcDir = glm::normalize(deCasteljau3(t, p0, p1, p2));
 
 
-    float angle = atan2(calcDir.x, calcDir.y) + M_PI_2;
+    float angle = atan2(calcDir.y, -calcDir.x);
     rotation = glm::rotate(glm::translate(glm::mat4(1), pos), angle, glm::vec3(0, 1, 0));
 
 
